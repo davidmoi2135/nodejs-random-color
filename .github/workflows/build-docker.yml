@@ -1,9 +1,6 @@
 name: Build and Push Docker Image
 
 on:
-  push:
-    branches:
-      - master
   workflow_dispatch:
     inputs:
       version:
@@ -31,7 +28,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
-        ref: ${{ inputs.version }}
+        ref: refs/tags/${{ inputs.version }}
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
